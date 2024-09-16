@@ -14,5 +14,5 @@ In the **Lakehouse architecture**:
 - **Bronze layer**: Stores the raw data as it is.
 - **Silver layer**: Contains data after quality checks and transformation.
 - **Gold layer**: Holds the final processed data, which could be aggregated or transformed.
-
+## Pipline Running in Azure
 ![pipeline!](Pipeline_On_The_Azure_Synapse.jpg)

@@ -20,11 +20,11 @@ The focus of the project is to demonstrate the migration of data into a Lakehous
 - **Bronze Layer**: Stores raw data as it is from the source.
 - **Silver Layer**: Contains data after quality checks and transformations.
 - **Gold Layer**: Holds the final processed data, which can be used for analytics, reporting, or ad-hoc querying.
----
+
 Additionally, I built a Synapse pipeline to automate the extraction, loading, and transformation (ELT) processes involved in this architecture. The data was stored in **Azure Data Lake Storage (ADLS)**.
 
-## **Steps Involved in the Project**
-
+### **Steps Involved in the Project**
+---
 ### **Step 1: SQL Server to Bronze Layer Migration**
 
 The first step was to migrate data from the SQL Server into the **Bronze Layer** in ADLS. Initially, each table (Customers, Accounts, Loans, Payments, and Transactions) was extracted and copied separately from SQL Server to ADLS using **copy activities**. However, this approach was inefficient due to the manual creation of copy activities for each table.

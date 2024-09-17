@@ -1,10 +1,6 @@
-# Fintech Data Migration Project 
+### Fintech Data Migration Project 
 ---
-![fintech!](FintechDataMigrationPipeline.png)
-
----
-
-## **Project Overview**
+### **Project Overview**
 ---
 
 In this project, I conceptualized the migration of data from a relational SQL Server database to a cloud-based Lakehouse architecture. The project involves the process of moving financial data from a traditional SQL database to Azure Data Lake Storage (ADLS) in a structured and scalable manner, leveraging the **Bronze**, **Silver**, and **Gold** layer approach for data storage and transformation.
@@ -22,9 +18,10 @@ The focus of the project is to demonstrate the migration of data into a Lakehous
 - **Gold Layer**: Holds the final processed data, which can be used for analytics, reporting, or ad-hoc querying.
 
 Additionally, I built a Synapse pipeline to automate the extraction, loading, and transformation (ELT) processes involved in this architecture. The data was stored in **Azure Data Lake Storage (ADLS)**.
+![fintech!](FintechDataMigrationPipeline.png)
 
 ## **Steps Involved in the Project**
----
+
 ### **Step 1: SQL Server to Bronze Layer Migration**
 
 The first step was to migrate data from the SQL Server into the **Bronze Layer** in ADLS. Initially, each table (Customers, Accounts, Loans, Payments, and Transactions) was extracted and copied separately from SQL Server to ADLS using **copy activities**. However, this approach was inefficient due to the manual creation of copy activities for each table.
@@ -92,8 +89,8 @@ In ADLS, I created a container called **Fintech**, In this cointainer I have cre
 - **Initial Manual Configuration**: The initial attempt to create individual copy activities for each table was inefficient and repetitive. I resolved this by using dynamic Lookup and ForEach activities in Synapse.
 - **Error Handling**: Handling errors during the pipeline execution, such as connection issues with SQL Server,ADLS and Azure Synapse.
 
-## **Conclusion**
----
+### **Conclusion**
+
 This project successfully implemented a Lakehouse architecture for a fintech use case. By automating the data migration process with Synapse Pipelines and organizing data into Bronze, Silver, and Gold layers in ADLS, I created a scalable, efficient, and agile architecture. This Lakehouse design can support future analytics and reporting needs, with Synapse and Logic Apps providing a robust orchestration and notification mechanism.
 
 

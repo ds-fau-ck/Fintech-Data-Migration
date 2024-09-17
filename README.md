@@ -18,10 +18,16 @@ The focus of the project is to demonstrate the migration of data into a Lakehous
 
 Additionally, I built a Synapse pipeline to automate the extraction, loading, and transformation (ELT) processes involved in this architecture. The data was stored in **Azure Data Lake Storage (ADLS)**.
 ![fintech!](FintechDataMigrationPipeline.png)
+### **Synapse Pipelines Overview**
 
+The Synapse pipeline orchestrated the entire process:
+1. **SQL Server to Bronze Layer (Copy)**: Using Lookup and ForEach activities to dynamically move data from SQL Server to ADLS in the Bronze Layer.
+2. **Bronze to Silver Layer (Notebook 1)**: Running a notebook to clean and transform the data in the Silver Layer.
+3. **Silver to Gold Layer (Notebook 2)**: Running another notebook to perform final transformations and aggregations in the Gold Layer.
+4. **Email Notifications**: Using Logic App to notify upon pipeline success or failure.
 ### **Steps Involved in the Project**
 
-### **Step 1: SQL Server to Bronze Layer Migration**
+### **Step 1: SQL Server to Bronze Layer**
 
 The first step was to migrate data from the SQL Server into the **Bronze Layer** in ADLS. Initially, each table (Customers, Accounts, Loans, Payments, and Transactions) was extracted and copied separately from SQL Server to ADLS using **copy activities**. However, this approach was inefficient due to the manual creation of copy activities for each table.
 
@@ -59,13 +65,7 @@ The Gold Layer is the final, cleaned, and transformed data that is ready for rep
 
 I implemented email notifications to alert on the success or failure of the pipeline execution. This was achieved using **Azure Logic App**, which sent notifications to the relevant stakeholders after the data was successfully moved to the Gold Layer or if any errors occurred during the process.
 
-### **Step 5: Synapse Pipelines Overview**
 
-The Synapse pipeline orchestrated the entire process:
-1. **SQL Server to Bronze Layer (Copy)**: Using Lookup and ForEach activities to dynamically move data from SQL Server to ADLS in the Bronze Layer.
-2. **Bronze to Silver Layer (Notebook 1)**: Running a notebook to clean and transform the data in the Silver Layer.
-3. **Silver to Gold Layer (Notebook 2)**: Running another notebook to perform final transformations and aggregations in the Gold Layer.
-4. **Email Notifications**: Using Logic App to notify upon pipeline success or failure.
 ### **Pipeline Running in Azure Synapse**
 
 ![pipeline!](Pipeline_On_The_Azure_Synapse.jpg)

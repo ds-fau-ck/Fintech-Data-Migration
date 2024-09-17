@@ -15,7 +15,7 @@ The SQL Server database schema is named **Fintech**, containing the following fi
 - **Loans**
 - **Payments**
 - **Transactions**
----
+
 The focus of the project is to demonstrate the migration of data into a Lakehouse architecture, applying data transformations and automating workflows using Azure Synapse Pipelines. The architecture follows a **Bronze**, **Silver**, and **Gold** layer approach:
 - **Bronze Layer**: Stores raw data as it is from the source.
 - **Silver Layer**: Contains data after quality checks and transformations.
@@ -23,7 +23,7 @@ The focus of the project is to demonstrate the migration of data into a Lakehous
 
 Additionally, I built a Synapse pipeline to automate the extraction, loading, and transformation (ELT) processes involved in this architecture. The data was stored in **Azure Data Lake Storage (ADLS)**.
 
-### **Steps Involved in the Project**
+## **Steps Involved in the Project**
 ---
 ### **Step 1: SQL Server to Bronze Layer Migration**
 
@@ -70,7 +70,7 @@ The Synapse pipeline orchestrated the entire process:
 2. **Bronze to Silver Layer (Notebook 1)**: Running a notebook to clean and transform the data in the Silver Layer.
 3. **Silver to Gold Layer (Notebook 2)**: Running another notebook to perform final transformations and aggregations in the Gold Layer.
 4. **Email Notifications**: Using Logic App to notify upon pipeline success or failure.
-## Pipeline Running in Azure
+### **Pipeline Running in Azure Synapse**
 ---
 ![pipeline!](Pipeline_On_The_Azure_Synapse.jpg)
 ### **Step 6: Data Storage in Azure Data Lake (ADLS)**
@@ -81,21 +81,19 @@ In ADLS, I created a container called **Fintech**, In this cointainer I have cre
 3. **Gold Layer**: Contains aggregated and transformed data, ready for analytics.
 
 ## **Key Benefits of this Architecture**
-
+---
 - **Automation**: The use of Synapse’s dynamic activities (Lookup, ForEach) allowed me to automate the movement of multiple tables without manually configuring separate pipelines for each.
 - **Scalability**: The Lakehouse architecture can easily accommodate more tables in the future by adjusting the pipeline.
 - **Data Quality**: Data was validated and cleaned in the Silver Layer, ensuring that only high-quality data reached the final Gold Layer.
 - **Agility**: The separation of raw, cleaned, and transformed data into different layers (Bronze, Silver, and Gold) allows for flexible reporting, analytics, and further processing.
 
 ## **Challenges Encountered**
-
+---
 - **Initial Manual Configuration**: The initial attempt to create individual copy activities for each table was inefficient and repetitive. I resolved this by using dynamic Lookup and ForEach activities in Synapse.
 - **Error Handling**: Handling errors during the pipeline execution, such as connection issues with SQL Server,ADLS and Azure Synapse.
 
 ## **Conclusion**
-
-This project successfully implemented a Lakehouse architecture for a fintech use case. By automating the data migration process with Synapse Pipelines and organizing data into Bronze, Silver, and Gold layers in ADLS, I created a scalable, efficient, and agile architecture. This Lakehouse design can support future analytics and reporting needs, with Synapse and Logic Apps providing a robust orchestration and notification mechanism.
-
 ---
+This project successfully implemented a Lakehouse architecture for a fintech use case. By automating the data migration process with Synapse Pipelines and organizing data into Bronze, Silver, and Gold layers in ADLS, I created a scalable, efficient, and agile architecture. This Lakehouse design can support future analytics and reporting needs, with Synapse and Logic Apps providing a robust orchestration and notification mechanism.
 
 

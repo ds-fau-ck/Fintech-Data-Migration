@@ -1,13 +1,10 @@
 # Fintech Data Migration Project 
-
+---
 ![fintech!](FintechDataMigrationPipeline.png)
 
 ---
 
-# **Fintech Data Lakehouse Architecture Project**
-
 ## **Project Overview**
-
 ---
 
 In this project, I conceptualized the migration of data from a relational SQL Server database to a cloud-based Lakehouse architecture. The project involves the process of moving financial data from a traditional SQL database to Azure Data Lake Storage (ADLS) in a structured and scalable manner, leveraging the **Bronze**, **Silver**, and **Gold** layer approach for data storage and transformation.

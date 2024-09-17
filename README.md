@@ -17,6 +17,7 @@ The focus of the project is to demonstrate the migration of data into a Lakehous
 - **Gold Layer**: Holds the final processed data, which can be used for analytics, reporting, or ad-hoc querying.
 
 Additionally, I built a Synapse pipeline to automate the extraction, loading, and transformation (ELT) processes involved in this architecture. The data was stored in **Azure Data Lake Storage (ADLS)**.
+
 ![fintech!](FintechDataMigrationPipeline.png)
 ### **Synapse Pipelines Overview**
 
@@ -69,7 +70,7 @@ I implemented email notifications to alert on the success or failure of the pipe
 ### **Pipeline Running in Azure Synapse**
 
 ![pipeline!](Pipeline_On_The_Azure_Synapse.jpg)
-### **Step 6: Data Storage in Azure Data Lake (ADLS)**
+### **Step 5: Data Storage in Azure Data Lake (ADLS)**
 
 In ADLS, I created a container called **Fintech**, In this cointainer I have created three folders:
 1. **Bronze Layer**: Contains raw data from the SQL Server tables.

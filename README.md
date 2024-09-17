@@ -19,7 +19,7 @@ The focus of the project is to demonstrate the migration of data into a Lakehous
 Additionally, I built a Synapse pipeline to automate the extraction, loading, and transformation (ELT) processes involved in this architecture. The data was stored in **Azure Data Lake Storage (ADLS)**.
 ![fintech!](FintechDataMigrationPipeline.png)
 
-## **Steps Involved in the Project**
+### **Steps Involved in the Project**
 
 ### **Step 1: SQL Server to Bronze Layer Migration**
 

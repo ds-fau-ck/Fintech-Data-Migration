@@ -73,12 +73,12 @@ The Synapse pipeline orchestrated the entire process:
 2. **Bronze to Silver Layer (Notebook 1)**: Running a notebook to clean and transform the data in the Silver Layer.
 3. **Silver to Gold Layer (Notebook 2)**: Running another notebook to perform final transformations and aggregations in the Gold Layer.
 4. **Email Notifications**: Using Logic App to notify upon pipeline success or failure.
-## Pipline Running in Azure
+## Pipeline Running in Azure
 ---
 ![pipeline!](Pipeline_On_The_Azure_Synapse.jpg)
 ### **Step 6: Data Storage in Azure Data Lake (ADLS)**
 
-In ADLS, I created a container called **Fintech** which housed three folders:
+In ADLS, I created a container called **Fintech**, In this cointainer I have created three folders:
 1. **Bronze Layer**: Contains raw data from the SQL Server tables.
 2. **Silver Layer**: Holds data after transformation and quality checks.
 3. **Gold Layer**: Contains aggregated and transformed data, ready for analytics.
@@ -93,7 +93,7 @@ In ADLS, I created a container called **Fintech** which housed three folders:
 ## **Challenges Encountered**
 
 - **Initial Manual Configuration**: The initial attempt to create individual copy activities for each table was inefficient and repetitive. I resolved this by using dynamic Lookup and ForEach activities in Synapse.
-- **Error Handling**: Handling errors during the pipeline execution, such as connection issues with SQL Server, required adding proper retries and notifications.
+- **Error Handling**: Handling errors during the pipeline execution, such as connection issues with SQL Server,ADLS and Azure Synapse.
 
 ## **Conclusion**
 

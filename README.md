@@ -71,7 +71,7 @@ The Synapse pipeline orchestrated the entire process:
 3. **Silver to Gold Layer (Notebook 2)**: Running another notebook to perform final transformations and aggregations in the Gold Layer.
 4. **Email Notifications**: Using Logic App to notify upon pipeline success or failure.
 ### **Pipeline Running in Azure Synapse**
----
+
 ![pipeline!](Pipeline_On_The_Azure_Synapse.jpg)
 ### **Step 6: Data Storage in Azure Data Lake (ADLS)**
 
@@ -80,15 +80,15 @@ In ADLS, I created a container called **Fintech**, In this cointainer I have cre
 2. **Silver Layer**: Holds data after transformation and quality checks.
 3. **Gold Layer**: Contains aggregated and transformed data, ready for analytics.
 
-## **Key Benefits of this Architecture**
----
+### **Key Benefits of this Architecture**
+
 - **Automation**: The use of Synapse’s dynamic activities (Lookup, ForEach) allowed me to automate the movement of multiple tables without manually configuring separate pipelines for each.
 - **Scalability**: The Lakehouse architecture can easily accommodate more tables in the future by adjusting the pipeline.
 - **Data Quality**: Data was validated and cleaned in the Silver Layer, ensuring that only high-quality data reached the final Gold Layer.
 - **Agility**: The separation of raw, cleaned, and transformed data into different layers (Bronze, Silver, and Gold) allows for flexible reporting, analytics, and further processing.
 
-## **Challenges Encountered**
----
+### **Challenges Encountered**
+
 - **Initial Manual Configuration**: The initial attempt to create individual copy activities for each table was inefficient and repetitive. I resolved this by using dynamic Lookup and ForEach activities in Synapse.
 - **Error Handling**: Handling errors during the pipeline execution, such as connection issues with SQL Server,ADLS and Azure Synapse.
 

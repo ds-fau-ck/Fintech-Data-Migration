@@ -2,92 +2,70 @@
 ### **End-to-End Data Engineering pipeline On Fintech Data Migration and Lakehouse Architecture Project**
 
 ### **Project Overview**
+Yes, there is some repetitive information regarding the **Bronze**, **Silver**, and **Gold** layer approach and the **Synapse pipeline**. Here's a more concise version of your description, removing redundancies:
 
-This project demonstrates the migration of data from a relational SQL Server database to a cloud-based Lakehouse architecture. The migration process involves moving financial data from a traditional SQL database to Azure Data Lake Storage (ADLS) in a structured and scalable manner, using the **Bronze**, **Silver**, and **Gold** layer approach for data storage and transformation.
+This project demonstrates the migration of data from a **relational SQL Server database** to a **cloud-based Lakehouse architecture**. The migration process involves moving financial data from a traditional SQL database to **Azure Data Lake Storage (ADLS)** using a structured and scalable approach.
 
-The SQL Server database schema is named **Fintech**, containing the following five tables:
-- **Customers**
-- **Accounts**
-- **Loans**
-- **Payments**
-- **Transactions**
+The SQL Server database schema, named **Fintech**, contains the following five tables:
+- Customers
+- Accounts
+- Loans
+- Payments
+- Transactions
 
-The project focuses on the migration of data into a Lakehouse architecture, applying data transformations and automating workflows using Azure Synapse Pipelines. The architecture follows a **Bronze**, **Silver**, and **Gold** layer approach:
-- **Bronze Layer**: Stores raw data as it is from the source.
-- **Silver Layer**: Contains data after quality checks and transformations.
-- **Gold Layer**: Holds the final processed data, which can be used for analytics, reporting, or ad-hoc querying.
+The data migration and transformation process is organized using the **Bronze, Silver, and Gold** layer architecture:
+- **Bronze Layer**: Raw data as extracted from the source.
+- **Silver Layer**: Data after quality checks and transformations.
+- **Gold Layer**: Fully processed data, ready for analytics and reporting.
 
-In addition, a Synapse pipeline was built to automate the extraction, loading, and transformation (ELT) processes involved in this architecture. After building the pipeline in Synapse, data from the **Gold Layer** was stored in **Azure Data Lake Storage (ADLS)** for further use.
-
+A Synapse pipeline was created to automate the **extraction, loading, and transformation (ELT)** processes, ensuring seamless data flow through these layers. After transformations, the final data from the **Gold Layer** is stored in **Azure Data Lake Storage (ADLS)** for further use.
 ### **Architecture**
 ![Architecture!](FintechDataMigrationPipeline.png)
 
 ### **Synapse Pipelines Overview**
 
-The Synapse pipeline orchestrated the entire process:
-1. **SQL Server to Bronze Layer (Copy)**: Using Lookup and ForEach activities to dynamically move data from SQL Server to ADLS in the Bronze Layer.
-2. **Bronze to Silver Layer (Notebook 1)**: Running a notebook to clean and transform the data in the Silver Layer.
-3. **Silver to Gold Layer (Notebook 2)**: Running another notebook to perform final transformations and aggregations in the Gold Layer.
-4. **Email Notifications**: Using Logic App to notify upon pipeline success or failure.
+The Synapse pipeline orchestrated the entire data migration and transformation process:
 
+1. **SQL Server to Bronze Layer (Copy)**: Data from SQL Server is dynamically copied to ADLS using a combination of **Lookup** and **ForEach** activities, which automate the transfer of tables (Customers, Accounts, Loans, Payments, and Transactions) to the Bronze Layer.
+2. **Bronze to Silver Layer (Notebook 1)**: A notebook is executed to clean and transform raw data in the Bronze Layer and store the processed data in the Silver Layer.
+3. **Silver to Gold Layer (Notebook 2)**: Another notebook runs to apply final transformations and aggregations on Silver Layer data, storing the final processed data in the Gold Layer.
+4. **Email Notifications**: A **Logic App** sends email notifications to stakeholders regarding pipeline success or failure.
+[Pipeline!](Pipeline_On_The_Azure_Synapse.jpg)
 ### **Steps Involved in the Project**
 
-### **Step 1: SQL Server to Bronze Layer**
+**Step 1: SQL Server to Bronze Layer**  
+The first step involved migrating tables from the SQL Server into the Bronze Layer in ADLS. Initially, separate copy activities were created for each table, but this approach was automated using **Lookup** and **ForEach** activities, which dynamically fetch the list of tables and loop through each to execute the copy activity, eliminating manual work.
 
-The first step was migrating data from the SQL Server into the **Bronze Layer** in ADLS. Initially, each table (Customers, Accounts, Loans, Payments, and Transactions) was extracted and copied separately from SQL Server to ADLS using **copy activities**. However, this approach was inefficient due to the manual creation of copy activities for each table.
+Key Components:
+- **SQL Server**: Source database.
+- **Azure Data Lake Storage (ADLS)**: Storage for raw data in the Bronze Layer.
+- **Synapse Pipeline**: Used to automate data movement from SQL Server to ADLS.
 
-To automate the process:
-- **Lookup Activity** was used to dynamically retrieve the list of tables (Customers, Accounts, Loans, Payments, and Transactions) from the **Fintech** schema in the SQL database.
-- **ForEach Activity** was used to loop through the list of tables from the Lookup activity and execute the copy activity for each table. This eliminated the need for hardcoding individual copy activities for each table.
-- **Copy Activity** inside the ForEach loop dynamically fetched data from each table and copied it into the **Bronze Layer** in ADLS.
+**Step 2: Moving Data from Bronze to Silver Layer**  
+Once in the Bronze Layer, data underwent validation and transformation using **Notebook 1**. The transformed data was stored in the Silver Layer, where it is cleaned and ready for further processing.
 
-Data was stored in ADLS under the **Fintech** container.
+**Step 3: Moving Data from Silver to Gold Layer**  
+**Notebook 2** handled further transformations and aggregations on the Silver Layer data, moving the final processed data to the Gold Layer, which is now ready for analytics, reporting, and querying.
 
-**Key Components in this Step:**
-- **SQL Server**: Source database containing the Fintech schema and tables.
-- **Azure Data Lake Storage (ADLS)**: Storage for the Bronze Layer, holding raw data.
-- **Synapse Pipeline**: Pipeline to automate data movement from SQL Server to ADLS.
-- **Copy Activity**: Transfers data from SQL tables to ADLS.
-- **ForEach Activity**: Enables dynamic data loading for each table without manually creating separate copy activities.
+**Step 4: Notification Setup with Logic App**  
+Azure **Logic App** was configured to send email notifications upon pipeline success or failure, ensuring stakeholders are informed about the pipeline execution.
 
-### **Step 2: Moving Data from Bronze to Silver Layer**
-
-Once raw data was stored in the Bronze Layer, quality checks and transformations were performed before moving it to the **Silver Layer**. This transformation process was carried out using **notebooks**.
-
-- **Notebook 1**: Extracted raw data from the Bronze Layer, performed data validation, cleaning, and transformation, and wrote the processed data into the **Silver Layer**.
-
-The Silver Layer now contains cleaned and transformed data, ready for further processing.
-
-### **Step 3: Moving Data from Silver to Gold Layer**
-
-After the data in the Silver Layer was transformed, it was further processed and aggregated into the **Gold Layer**, which typically holds fact and dimension tables for analytical purposes.
-
-- **Notebook 2**: Extracted data from the Silver Layer, applied any additional transformations or aggregations, and wrote the final data into the **Gold Layer**.
-
-The **Gold Layer** contains the final, cleaned, and transformed data, making it ready for reporting, analytics, and querying.
-
-### **Step 4: Notification Setup with Logic App**
-
-Email notifications were set up to alert stakeholders on the success or failure of the pipeline execution. This was achieved using **Azure Logic App**, which sent notifications after the data was successfully moved to the Gold Layer or if any errors occurred during the process.
-![data pipeline!](Pipeline_On_The_Azure_Synapse.jpg)
-### **Step 5: Data Storage in Azure Data Lake (ADLS)**
-
-In ADLS, a container named **Fintech** was created. Inside this container, three folders were organized:
-1. **Bronze Layer**: Contains raw data from SQL Server tables.
-2. **Silver Layer**: Holds data after transformation and quality checks.
-3. **Gold Layer**: Contains aggregated and transformed data, ready for analytics.
+**Step 5: Data Storage in Azure Data Lake (ADLS)**  
+Data was stored in the **Fintech** container in ADLS, organized into three layers:
+- **Bronze**: Raw data.
+- **Silver**: Cleaned and transformed data.
+- **Gold**: Final aggregated and processed data.
 
 ### **Key Benefits of this Architecture**
-
-- **Automation**: Synapse’s dynamic activities (Lookup, ForEach) automate the movement of multiple tables without manually configuring separate pipelines for each.
-- **Scalability**: The Lakehouse architecture can easily accommodate more tables in the future by adjusting the pipeline.
-- **Data Quality**: Data is validated and cleaned in the Silver Layer, ensuring only high-quality data reaches the final Gold Layer.
-- **Agility**: The separation of raw, cleaned, and transformed data into different layers (Bronze, Silver, and Gold) allows for flexible reporting, analytics, and further processing.
+- **Automation**: Dynamic activities such as **Lookup** and **ForEach** automate the process, eliminating the need for manually configuring pipelines for each table.
+- **Scalability**: The architecture can easily accommodate additional tables or data sources in the future.
+- **Data Quality**: Silver Layer ensures data validation and cleaning, ensuring only high-quality data reaches the Gold Layer.
+- **Agility**: The separation into Bronze, Silver, and Gold layers allows for flexible data processing and analytics.
 
 ### **Challenges Encountered**
+- **Initial Manual Configuration**: Creating individual copy activities for each table was inefficient, later resolved by using dynamic activities.
+- **Error Handling**: Connection issues with SQL Server, ADLS, and Synapse required troubleshooting during the pipeline execution.
 
-- **Initial Manual Configuration**: Creating individual copy activities for each table was inefficient and repetitive, resolved by using dynamic Lookup and ForEach activities in Synapse.
-- **Error Handling**: Issues with connection to SQL Server, ADLS, and Azure Synapse required attention during the pipeline execution.
 
 ### **Scripts and data for this Project**
 1. [Spark-notebook](spark-notebook/BronzeToSilverDataProcess.ipynb)

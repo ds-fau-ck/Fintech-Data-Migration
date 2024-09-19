@@ -34,18 +34,20 @@ The Synapse pipeline orchestrated the entire data migration and transformation p
 ![Pipeline!](Pipeline_On_The_Azure_Synapse.jpg)
 ### **Steps Involved in the Project**
 
-**Step 1: SQL Server to Bronze Layer**  
-The first step involved migrating tables from the SQL Server into the Bronze Layer in ADLS. Initially, separate copy activities were created for each table, but this approach was automated using **Lookup** and **ForEach** activities, which dynamically fetch the list of tables and loop through each to execute the copy activity, eliminating manual work.
 ### **Technology Used**
 
-1. Programming Language - Python  
-2. Scripting Language - SQL 
-3. Pyspark
-4. Azure Cloud Platform
-    - Azure ADLS
-    - Azure SQL Database
-    - Delta table
-    - Azure Synapse Ayalytics
+1. **Programming Language**: Python  
+2. **Scripting Language**: SQL  
+3. **Data Processing**: PySpark  
+4. **Azure Cloud Platform**:
+   - Azure Data Lake Storage (ADLS)
+   - Azure SQL Database
+   - Delta Tables
+   - Azure Synapse Analytics
+
+### **Step 1: SQL Server to Bronze Layer**
+The first step involved migrating tables from the SQL Server into the Bronze Layer in ADLS. Initially, separate copy activities were created for each table, but this approach was automated using **Lookup** and **ForEach** activities, which dynamically fetch the list of tables and loop through each to execute the copy activity, eliminating manual work.
+
 Key Components:
 - **SQL Server**: Source database.
 - **Azure Data Lake Storage (ADLS)**: Storage for raw data in the Bronze Layer.

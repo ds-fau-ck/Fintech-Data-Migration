@@ -20,7 +20,7 @@ The data migration and transformation process is organized using the **Bronze, S
 
 A Synapse pipeline was created to automate the **extraction, loading, and transformation (ELT)** processes, ensuring seamless data flow through these layers. After transformations, the final data from the **Gold Layer** is stored in **Azure Data Lake Storage (ADLS)** for further use.
 ### **Architecture**
-![Architecture!](FintechDataMigrationPipeline.png)
+[Architecture!](FintechDataMigrationPipeline.png)
 
 ### **Synapse Pipelines Overview**
 
@@ -30,6 +30,7 @@ The Synapse pipeline orchestrated the entire data migration and transformation p
 2. **Bronze to Silver Layer (Notebook 1)**: A notebook is executed to clean and transform raw data in the Bronze Layer and store the processed data in the Silver Layer.
 3. **Silver to Gold Layer (Notebook 2)**: Another notebook runs to apply final transformations and aggregations on Silver Layer data, storing the final processed data in the Gold Layer.
 4. **Email Notifications**: A **Logic App** sends email notifications to stakeholders regarding pipeline success or failure.
+
 [Pipeline!](Pipeline_On_The_Azure_Synapse.jpg)
 ### **Steps Involved in the Project**
 

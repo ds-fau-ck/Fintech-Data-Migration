@@ -2,8 +2,6 @@
 ### **End-to-End Data Engineering pipeline On Fintech Data Migration and Lakehouse Architecture Project**
 
 ### **Project Overview**
-Yes, there is some repetitive information regarding the **Bronze**, **Silver**, and **Gold** layer approach and the **Synapse pipeline**. Here's a more concise version of your description, removing redundancies:
-
 This project demonstrates the migration of data from a **relational SQL Server database** to a **cloud-based Lakehouse architecture**. The migration process involves moving financial data from a traditional SQL database to **Azure Data Lake Storage (ADLS)** using a structured and scalable approach.
 
 The SQL Server database schema, named **Fintech**, contains the following five tables:
@@ -25,7 +23,6 @@ A Synapse pipeline was created to automate the **extraction, loading, and transf
 ### **Synapse Pipelines Overview**
 
 The Synapse pipeline orchestrated the entire data migration and transformation process:
-
 1. **SQL Server to Bronze Layer (Copy)**: Data from SQL Server is dynamically copied to ADLS using a combination of **Lookup** and **ForEach** activities, which automate the transfer of tables (Customers, Accounts, Loans, Payments, and Transactions) to the Bronze Layer.
 2. **Bronze to Silver Layer (Notebook 1)**: A notebook is executed to clean and transform raw data in the Bronze Layer and store the processed data in the Silver Layer.
 3. **Silver to Gold Layer (Notebook 2)**: Another notebook runs to apply final transformations and aggregations on Silver Layer data, storing the final processed data in the Gold Layer.

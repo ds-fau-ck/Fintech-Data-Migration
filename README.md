@@ -17,7 +17,8 @@ The project focuses on the migration of data into a Lakehouse architecture, appl
 - **Silver Layer**: Contains data after quality checks and transformations.
 - **Gold Layer**: Holds the final processed data, which can be used for analytics, reporting, or ad-hoc querying.
 
-In addition, a Synapse pipeline was built to automate the extraction, loading, and transformation (ELT) processes involved in this architecture. The data is stored in **Azure Data Lake Storage (ADLS)**.
+In addition, a Synapse pipeline was built to automate the extraction, loading, and transformation (ELT) processes involved in this architecture. After building the pipeline in Synapse, data from the **Gold Layer** was stored in **Azure Data Lake Storage (ADLS)** for further use.
+
 ### **Architecture**
 ![Architecture!](FintechDataMigrationPipeline.png)
 

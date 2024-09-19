@@ -18,7 +18,9 @@ The project focuses on the migration of data into a Lakehouse architecture, appl
 - **Gold Layer**: Holds the final processed data, which can be used for analytics, reporting, or ad-hoc querying.
 
 In addition, a Synapse pipeline was built to automate the extraction, loading, and transformation (ELT) processes involved in this architecture. The data is stored in **Azure Data Lake Storage (ADLS)**.
-![fintech!](FintechDataMigrationPipeline.png)
+### **Architecture**
+![Architecture!](FintechDataMigrationPipeline.png)
+
 ### **Synapse Pipelines Overview**
 
 The Synapse pipeline orchestrated the entire process:
@@ -66,7 +68,7 @@ The **Gold Layer** contains the final, cleaned, and transformed data, making it 
 ### **Step 4: Notification Setup with Logic App**
 
 Email notifications were set up to alert stakeholders on the success or failure of the pipeline execution. This was achieved using **Azure Logic App**, which sent notifications after the data was successfully moved to the Gold Layer or if any errors occurred during the process.
-![pipeline!](Pipeline_On_The_Azure_Synapse.jpg)
+![data pipeline!](Pipeline_On_The_Azure_Synapse.jpg)
 ### **Step 5: Data Storage in Azure Data Lake (ADLS)**
 
 In ADLS, a container named **Fintech** was created. Inside this container, three folders were organized:

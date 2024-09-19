@@ -88,6 +88,14 @@ In ADLS, a container named **Fintech** was created. Inside this container, three
 - **Initial Manual Configuration**: Creating individual copy activities for each table was inefficient and repetitive, resolved by using dynamic Lookup and ForEach activities in Synapse.
 - **Error Handling**: Issues with connection to SQL Server, ADLS, and Azure Synapse required attention during the pipeline execution.
 
+### **Scripts and data for this Project**
+1. [Spark-notebook](spark-notebook/BronzeToSilverDataProcess.ipynb)
+2. [Spark-notebook](spark-notebook/SilverToGoldDataProcess.ipynb)
+3. [Sql-Database-Table](Sql-Database-Table/Accounts.sql)
+4. [Sql-Database-Table](Sql-Database-Table/Customers.sql)
+5. [Sql-Database-Table](Sql-Database-Table/Loans.sql)
+6. [Sql-Database-Table](Sql-Database-Table/Payments.sql)
+7. [Sql-Database-Table](Sql-Database-Table/Transactions.sql)
 ### **Conclusion**
 
 The project successfully implemented a Lakehouse architecture for fintech data migration. By automating the data migration process with Synapse Pipelines and organizing data into Bronze, Silver, and Gold layers in ADLS, a scalable, efficient, and agile architecture was created. This design supports future analytics and reporting needs, with Synapse and Logic Apps providing a robust orchestration and notification mechanism.

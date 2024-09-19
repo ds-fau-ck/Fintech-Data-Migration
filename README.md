@@ -1,5 +1,5 @@
 
-### **End-to-End Fintech Data Migration and Lakehouse Architecture Project**
+### **End-to-End Data Engineering pipeline On Fintech Data Migration and Lakehouse Architecture Project**
 
 ### **Project Overview**
 
